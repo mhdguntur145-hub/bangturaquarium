@@ -1,0 +1,278 @@
+/* =========================================================
+   STYLE: MONTEREY BAY AQUARIUM - DINAMIS & ELEGAN
+   ========================================================= */
+
+:root {
+    --mba-dark: #030712;
+    --mba-navy: #0b1d3a;
+    --mba-teal: #00a8b5;
+    --mba-teal-bright: #38bdf8;
+    --mba-bg: #0f172a;
+    --mba-card: rgba(15, 23, 42, 0.85);
+    --mba-text: #f8fafc;
+    --mba-muted: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #0b1329;
+    color: var(--mba-text);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   HEADER DENGAN ANIMASI BUBBLE & WAVE
+   ========================================================= */
+header {
+    background: linear-gradient(180deg, #020617 0%, #0b1d3a 70%, #0284c7 100%);
+    color: white;
+    padding: 60px 20px 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animasi Gelembung Air di Header */
+.bubble-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -30px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    animation: rise 10s infinite ease-in;
+}
+
+.bubble:nth-child(1) { left: 10%; width: 25px; height: 25px; animation-duration: 8s; }
+.bubble:nth-child(2) { left: 30%; width: 15px; height: 15px; animation-duration: 12s; animation-delay: 2s; }
+.bubble:nth-child(3) { left: 50%; width: 35px; height: 35px; animation-duration: 10s; animation-delay: 1s; }
+.bubble:nth-child(4) { left: 75%; width: 20px; height: 20px; animation-duration: 9s; animation-delay: 3s; }
+.bubble:nth-child(5) { left: 90%; width: 30px; height: 30px; animation-duration: 11s; animation-delay: 1.5s; }
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    30% { opacity: 0.8; }
+    100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.header-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--mba-teal), #0284c7);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 15px rgba(0, 168, 181, 0.5);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    background: linear-gradient(to right, #ffffff, #7dd3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    font-size: 1.15rem;
+    color: #e2e8f0;
+    font-weight: 300;
+}
+
+/* Gelombang Bawah Header */
+.wave-divider {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 2;
+}
+
+.wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 40px;
+}
+
+/* =========================================================
+   NAVIGASI (MELAYANG & GLOWING)
+   ========================================================= */
+nav {
+    background-color: rgba(3, 7, 18, 0.95);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(0, 168, 181, 0.4);
+}
+
+nav a {
+    display: inline-block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 8px 22px;
+    margin: 2px 5px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: white;
+    background: linear-gradient(135deg, var(--mba-teal), #0284c7);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+/* =========================================================
+   BANNER TEKS BERJALAN & HIASAN DINAMIS (TICKER & GLOW LINE)
+   ========================================================= */
+.ocean-ticker-bar {
+    background: linear-gradient(90deg, #0284c7, #00a8b5, #0284c7);
+    color: #ffffff;
+    padding: 10px 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+}
+
+.ticker-content span {
+    margin: 0 35px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Efek Garis Cahaya Biota Laut (Glow Divider) */
+.ocean-glow-line {
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--mba-teal-bright), transparent);
+    margin: 30px auto 10px auto;
+    box-shadow: 0 0 15px var(--mba-teal-bright);
+    border-radius: 50%;
+}
+
+/* =========================================================
+   AREA KONTEN UTAMA & IFRAME
+   ========================================================= */
+main {
+    width: 95%;
+    max-width: 1350px;
+    margin: 10px auto 40px auto;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(16px);
+    padding: 25px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.15);
+    border: 1.5px solid rgba(56, 189, 248, 0.3);
+    flex: 1;
+}
+
+.iframe-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.iframe-title-bar h2 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+/* BINGKAI IFRAME DENGAN GLOW */
+iframe {
+    width: 100%;
+    height: 720px;
+    border: none;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* FOOTER */
+footer {
+    background-color: #020617;
+    color: #94a3b8;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: auto;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer strong {
+    color: var(--mba-teal-bright);
+}
+
+@media screen and (max-width: 768px) {
+    header h1 { font-size: 2.2rem; }
+    nav a { padding: 6px 12px; font-size: 0.85rem; }
+    iframe { height: 500px; }
+}

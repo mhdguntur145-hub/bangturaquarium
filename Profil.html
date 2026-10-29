@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Kami - BangTur Aquarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Tema Biru Kedalaman Air / Ocean Deep */
+            background: linear-gradient(180deg, #0f172a 0%, #0369a1 40%, #0284c7 80%, #0f172a 100%);
+            font-family: 'Poppins', sans-serif;
+            padding: 60px 20px;
+            color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------------------------------
+           Efek Hiasan Bawah Air & Gelembung
+        ------------------------------------------------------------- */
+        .sunbeam {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 400px;
+            background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5), 0 0 10px rgba(56, 189, 248, 0.3);
+            animation: rise 10s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 60%; animation-duration: 10s; animation-delay: 1s; }
+        .bubble:nth-child(4) { width: 15px; height: 15px; left: 75%; animation-duration: 7s; animation-delay: 3s; }
+        .bubble:nth-child(5) { width: 30px; height: 30px; left: 90%; animation-duration: 11s; animation-delay: 1.5s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+        }
+
+        /* -------------------------------------------------------------
+           Header Styling
+        ------------------------------------------------------------- */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tag-headline {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .judul-halaman {
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .sub-halaman {
+            color: #bae6fd;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        /* -------------------------------------------------------------
+           Kartu Profil Utama (Tentang Kami)
+        ------------------------------------------------------------- */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15);
+            border: 1.5px solid rgba(56, 189, 248, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .hero-profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-profile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-text h2 {
+            font-size: 28px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero-text h2 span {
+            color: #38bdf8;
+        }
+
+        .hero-text p {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .stat-item {
+            background: rgba(2, 132, 199, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 15px 10px;
+            border-radius: 14px;
+        }
+
+        .stat-number {
+            font-size: 22px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #bae6fd;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .hero-image-box {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(56, 189, 248, 0.4);
+            height: 320px;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* -------------------------------------------------------------
+           Visi & Misi
+        ------------------------------------------------------------- */
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 50px 0 30px 0;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #38bdf8, #14b8a6);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .vision-mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .vm-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.25);
+        }
+
+        .vm-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .vm-card h3 {
+            color: #38bdf8;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .vm-card p {
+            color: #94a3b8;
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+
+        .vm-card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .vm-card ul li {
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vm-card ul li::before {
+            content: '🌊';
+            font-size: 11px;
+        }
+
+        /* -------------------------------------------------------------
+           Kartu Tim / Founder
+        ------------------------------------------------------------- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .team-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.3);
+        }
+
+        .avatar-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #0284c7, #14b8a6);
+            padding: 3px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-card h4 {
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .team-role {
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+        }
+
+        .team-desc {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* Footer Mini Info */
+        .footer-info {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #7dd3fc;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sunbeam"></div>
+
+<div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header-container">
+        <span class="tag-headline">BangTur Aquarium</span>
+        <h1 class="judul-halaman">Profil & Cerita Kami</h1>
+        <p class="sub-halaman">Mengenal lebih dekat galeri akuarium & pusat spesies predator terpercaya di Bandung</p>
+    </div>
+
+    <!-- Hero Profile Section -->
+    <div class="glass-card">
+        <div class="hero-profile">
+            <div class="hero-text">
+                <h2>Selamat Datang di <span>BangTur Aquarium</span></h2>
+                <p>
+                    Berdiri sejak tahun 2021 di Kota Bandung, BangTur Aquarium berawal dari kegemaran mendalam terhadap keindahan ekosistem air tawar dan pesona ikan-ikan predator eksotis.
+                </p>
+                <p>
+                    Kini kami berkembang menjadi penyedia terintegrasi untuk kebutuhan akuarium, ikan predator sehat bersertifikat, perlengkapan aquascape premium, serta konsultasi setting tank profesional.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Pelanggan Puas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Ikan Sehat</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Tahun Pengalaman</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-box">
+                <img src="img/tank aquarium 1.jpg" alt="Galeri BangTur Aquarium">
+            </div>
+        </div>
+    </div>
+
+    <!-- Visi & Misi -->
+    <h2 class="section-title">Visi & Misi</h2>
+    <div class="vision-mission-grid">
+        <div class="vm-card">
+            <span class="vm-icon">🎯</span>
+            <h3>Visi Utama</h3>
+            <p>
+                Menjadi pusat galeri akuarium, ikan predator, dan aquascape nomor satu yang terpercaya di Indonesia, mengutamakan kualitas kesehatan flora & fauna air serta kepuasan pelanggan.
+            </p>
+        </div>
+
+        <div class="vm-card">
+            <span class="vm-icon">🚀</span>
+            <h3>Misi Kami</h3>
+            <ul>
+                <li>Menyediakan koleksi ikan hias & predator sehat bermutu tinggi.</li>
+                <li>Menawarkan harga jujur dan terjangkau untuk seluruh kalangan hobiis.</li>
+                <li>Mendukung pemula dengan edukasi & perawatan akuarium yang benar.</li>
+                <li>Menjamin garansi pengiriman aman (*Life Arrival Guarantee*).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tim / Tokoh dibalik BangTur Aquarium -->
+    <h2 class="section-title">Tim Utama Kami</h2>
+    <div class="team-grid">
+        
+        <div class="team-card">
+            <div class="avatar-box">
+                <img src="img/gtr2.jpeg" alt="Founder">
+            </div>
+            <h4>Guntur Hidayatullah</h4>
+            <p class="team-role">Founder & Chief Specialist</p>
+            <p class="team-desc">Pencinta ikan predator & aquascaper handal yang merintis BangTur Industry dari hobi masa kecil.</p>
+        </div>
+
+        <div class="team-card">
+            <div class="avatar-box">
+                <img src="img/filter aquarium.jpg" alt="Aquascape Designer">
+            </div>
+            <h4>Abi Afif</h4>
+            <p class="team-role">Head of Aquascape</p>
+
+            <p class="team-desc">Ahli dalam perancangan ekosistem aquascape, tata letak hardscape, serta pemilihan tanaman air.</p>
+        </div>
+
+        <div class="team-card">
+            <div class="avatar-box">
+                <img src="img/Oscar.jpg" alt="Customer Care">
+            </div>
+            <h4>Questa Delmora</h4>
+            <p class="team-role">Quality Control & Care</p>
+            <p class="team-desc">Bertanggung jawab atas karantina ketat, kesehatan pakan, serta layanan purna jual untuk pelanggan.</p>
+        </div>
+
+    </div>
+
+    <div class="footer-info">
+        &copy; 2026 <strong>BangTur Aquarium</strong>. Solusi Terbaik Akuarium & Predator Tank Indonesia.
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaringan Distributor - BangTur Aquarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Tema Biru Kedalaman Air / Ocean Deep */
+            background: linear-gradient(180deg, #0f172a 0%, #0369a1 50%, #0284c7 100%);
+            font-family: 'Poppins', sans-serif;
+            padding: 60px 20px;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        .header-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tag-headline {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .judul-halaman {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sub-halaman {
+            color: #bae6fd;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        /* Grid Layout */
+        .distributor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Card Desain Distributor (Glassmorphism & Ocean Theme) */
+        .distributor-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .distributor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(14, 165, 233, 0.35);
+            border-color: #38bdf8;
+        }
+
+        /* Header Card & Badge */
+        .distributor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .badge-region {
+            background-color: #0284c7;
+            color: #ffffff;
+            border: 1px solid #38bdf8;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge-status {
+            background-color: rgba(20, 184, 166, 0.2);
+            color: #2dd4bf;
+            border: 1px solid #14b8a6;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        /* Typography & Info Distributor */
+        .distributor-card h3 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .specialty {
+            color: #38bdf8;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .info-list {
+            list-style: none;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .description {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Tombol Kontak Tema Aquarium */
+        .btn-contact {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: #ffffff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.25s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-contact:hover {
+            background: linear-gradient(135deg, #38bdf8, #14b8a6);
+            color: #0f172a;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+        }
+
+        .btn-contact:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <span class="tag-headline">BangTur Aquarium Partnership</span>
+    <h1 class="judul-halaman">Jaringan Distributor Resmi</h1>
+    <p class="sub-halaman">Mitra suplier utama untuk pengadaan ikan predator, bibit unggul, dan perlengkapan grosir</p>
+</div>
+
+<div class="distributor-container">
+
+    <!-- Distributor 1 -->
+    <div class="distributor-card">
+        <div class="distributor-header">
+            <span class="badge-region">Kalimantan Barat</span>
+            <span class="badge-status">Supplier Utama</span>
+        </div>
+        <h3>PT Borneo Arowana Nusantara</h3>
+        <p class="specialty">Spesialis Arowana Super Red & Predator Air Tawar</p>
+        <ul class="info-list">
+            <li>📍 <strong>Lokasi:</strong> Kapuas Hulu, Kalbar</li>
+            <li>📦 <strong>Kapasitas:</strong> Khusus Grosir & Sertifikat Lengkap</li>
+            <li>🚚 <strong>Pengiriman:</strong> Cargo Udara (Garansi Life Arrival)</li>
+        </ul>
+        <p class="description">Penangkar resmi Arowana Super Red bersertifikat CITES & BKSDA. Menyuplai stok ikan kelas kontes untuk toko aquarium.</p>
+        <a href="#" class="btn-contact">🤝 Hubungi Distributor</a>
+    </div>
+
+    <!-- Distributor 2 -->
+    <div class="distributor-card">
+        <div class="distributor-header">
+            <span class="badge-region">Jawa Barat</span>
+            <span class="badge-status">Mitra Resmi</span>
+        </div>
+        <h3>CV Sukabumi Aqua Farm</h3>
+        <p class="specialty">Penyedia Cichlid (Oscar, Discus) & Ikan Hias Lokal</p>
+        <ul class="info-list">
+            <li>📍 <strong>Lokasi:</strong> Sukabumi, Jawa Barat</li>
+            <li>📦 <strong>Kapasitas:</strong> Ratusan Ekor / Minggu</li>
+            <li>🚚 <strong>Pengiriman:</strong> Kereta Api Express / Travel</li>
+        </ul>
+        <p class="description">Pusat budidaya ikan Oscar Albino, Discus, dan Cichlid berkualitas tinggi dengan seleksi genetik warna yang pekat.</p>
+        <a href="#" class="btn-contact">🤝 Hubungi Distributor</a>
+    </div>
+
+    <!-- Distributor 3 -->
+    <div class="distributor-card">
+        <div class="distributor-header">
+            <span class="badge-region">DKI Jakarta</span>
+            <span class="badge-status">Distributor Tank</span>
+        </div>
+        <h3>AquaGlass Manufacture ID</h3>
+        <p class="specialty">Pabrik Glass Tank & Equipment Aquarium</p>
+        <ul class="info-list">
+            <li>📍 <strong>Lokasi:</strong> Jakarta Barat</li>
+            <li>📦 <strong>Kapasitas:</strong> Custom Tank & Seri Rimless</li>
+            <li>🚚 <strong>Pengiriman:</strong> Armada Kurir Khusus / Truk</li>
+        </ul>
+        <p class="description">Produsen spesialis kaca Gosok Mesin, Asahi Glass, dan pembuatan Kabinet Custom untuk aquarium monster tank skala besar.</p>
+        <a href="#" class="btn-contact">🤝 Hubungi Distributor</a>
+    </div>
+
+    <!-- Distributor 4 -->
+    <div class="distributor-card">
+        <div class="distributor-header">
+            <span class="badge-region">Jawa Tengah</span>
+            <span class="badge-status">Importir Resmi</span>
+        </div>
+        <h3>Exotic Monster Fish Importer</h3>
+        <p class="specialty">Impor Piranha, Aligator Gar & Spesies Eksotis</p>
+        <ul class="info-list">
+            <li>📍 <strong>Lokasi:</strong> Semarang, Jawa Tengah</li>
+            <li>📦 <strong>Kapasitas:</strong> Quarantined & Legal Import</li>
+            <li>🚚 <strong>Pengiriman:</strong> Karantina Khusus & Bus Malam</li>
+        </ul>
+        <p class="description">Pemasok resmi ikan predator eksotis impor. Semua unit telah melewati proses karantina ketat untuk menjamin kesehatan ikan.</p>
+        <a href="#" class="btn-contact">🤝 Hubungi Distributor</a>
+    </div>
+
+</div>
+
+</body>
+</html>

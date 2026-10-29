@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan & Garansi - BangTur Aquarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Tema Biru Kedalaman Air / Ocean Deep */
+            background: linear-gradient(180deg, #0f172a 0%, #0369a1 50%, #0284c7 100%);
+            font-family: 'Poppins', sans-serif;
+            padding: 60px 20px;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        .header-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tag-headline {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .judul-halaman {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sub-halaman {
+            color: #bae6fd;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        /* Grid Layout */
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Card Desain Layanan & Garansi (Glassmorphism) */
+        .service-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(14, 165, 233, 0.35);
+            border-color: #38bdf8;
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            background: rgba(2, 132, 199, 0.25);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .service-card h3 {
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .service-desc {
+            color: #94a3b8;
+            font-size: 13.5px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .service-list {
+            list-style: none;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .service-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-list li::before {
+            content: '🌊';
+            font-size: 10px;
+        }
+
+        /* Tombol Aksi */
+        .btn-service {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: #ffffff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.25s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+
+        .btn-service:hover {
+            background: linear-gradient(135deg, #38bdf8, #14b8a6);
+            color: #0f172a;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Banner Jaminan / Garansi Khusus */
+        .warranty-banner {
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(2, 132, 199, 0.4));
+            border: 1.5px solid #38bdf8;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .warranty-banner h3 {
+            color: #38bdf8;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .warranty-banner p {
+            color: #e2e8f0;
+            font-size: 14px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Footer Mini Info */
+        .footer-info {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #7dd3fc;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <span class="tag-headline">BangTur Excellence Care</span>
+    <h1 class="judul-halaman">Layanan & Garansi Resmi</h1>
+    <p class="sub-halaman">Solusi profesional perawatan akuarium, instalasi aquascape, dan jaminan keamanan flora-fauna</p>
+</div>
+
+<div class="service-container">
+
+    <!-- Layanan 1: Perawatan & Maintenance -->
+    <div class="service-card">
+        <div class="service-icon">🧽</div>
+        <h3>Maintenance & Cleaning</h3>
+        <p class="service-desc">Layanan pemeliharaan rutin akuarium air tawar dan monster tank langsung ke lokasi Anda agar air tetap jernih dan sehat.</p>
+        <ul class="service-list">
+            <li>Pembersihan kaca & sedot kotoran dasar</li>
+            <li>Pencucian media filter utama & sterilisasi</li>
+            <li>Pengecekan parameter air (pH & Amonia)</li>
+        </ul>
+        <a href="Kontak.html" target="konten" class="btn-service">📅 Jadwalkan Maintenance</a>
+    </div>
+
+    <!-- Layanan 2: Instalasi Custom Tank -->
+    <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Instalasi & Setting Custom</h3>
+        <p class="service-desc">Jasa perancangan dan perakitan akuarium dari nol untuk rumah, kantor, kafe, atau ruang tunggu mewah.</p>
+        <ul class="service-list">
+            <li>Pemasangan hardscape & dekorasi batu/kayu</li>
+            <li>Setting instalasi pipa, sump filter, & aerator</li>
+            <li>Aquascape planted tank profesional</li>
+        </ul>
+        <a href="Kontak.html" target="konten" class="btn-service">📐 Konsultasi Desain</a>
+    </div>
+
+    <!-- Layanan 3: Karantina & Pengiriman Aman -->
+    <div class="service-card">
+        <div class="service-icon">🚚</div>
+        <h3>Karantina & Pengiriman Aman</h3>
+        <p class="service-desc">Setiap ikan hias dan predator telah melewati masa karantina ketat untuk memastikan bebas parasit dan siap adaptasi.</p>
+        <ul class="service-list">
+            <li>Packing oksigen murni berlapis ganda</li>
+            <li>Surat kesehatan karantina ikan resmi</li>
+            <li>Pengiriman cepat khusus area kota & luar kota</li>
+        </ul>
+        <a href="Kontak.html" target="konten" class="btn-service">📦 Cek Ketentuan Kirim</a>
+    </div>
+
+</div>
+
+<!-- Banner Garansi -->
+<div class="warranty-banner">
+    <h3>🛡️ Jaminan Garansi "Life Arrival" & Kualitas Produk</h3>
+    <p>
+        Kami memberikan **Garansi 100% Life Arrival** untuk pengiriman ikan hidup (disertai video unboxing tanpa cut). Selain itu, seluruh rangkaian tangki kaca dan instalasi filter dari BangTur Aquarium dilindungi **Garansi Resmi Anti-Bocor hingga 1 Tahun** demi ketenangan dan kepuasan Anda.
+    </p>
+</div>
+
+<div class="footer-info">
+    &copy; 2026 <strong>BangTur Aquarium</strong>. Layanan Prima untuk Hobiis Sejati.
+</div>
+
+</body>
+</html>

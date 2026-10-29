@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumber Gambar - BangTur Aquarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Tema Biru Kedalaman Air / Ocean Deep */
+            background: linear-gradient(180deg, #0f172a 0%, #0369a1 50%, #0284c7 100%);
+            font-family: 'Poppins', sans-serif;
+            padding: 60px 20px;
+            color: #f8fafc;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------------------------------
+           Efek Hiasan Bawah Air & Gelembung
+        ------------------------------------------------------------- */
+        .sunbeam {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 400px;
+            background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.5), 0 0 10px rgba(56, 189, 248, 0.3);
+            animation: rise 10s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 25%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 60%; animation-duration: 10s; animation-delay: 1s; }
+        .bubble:nth-child(4) { width: 15px; height: 15px; left: 75%; animation-duration: 7s; animation-delay: 3s; }
+        .bubble:nth-child(5) { width: 30px; height: 30px; left: 90%; animation-duration: 11s; animation-delay: 1.5s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+        }
+
+        /* -------------------------------------------------------------
+           Container & Header
+        ------------------------------------------------------------- */
+        .container {
+            max-width: 750px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .tag-headline {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .judul-halaman {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* -------------------------------------------------------------
+           Kartu Sumber (Glassmorphism)
+        ------------------------------------------------------------- */
+        .kotak-sumber {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15);
+            border: 1.5px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* List Sumber Gambar */
+        .sumber-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 16px 20px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .sumber-item:hover {
+            border-color: #38bdf8;
+            transform: translateX(5px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .sumber-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sumber-num {
+            color: #38bdf8;
+            font-weight: 800;
+            font-size: 16px;
+            background: rgba(56, 189, 248, 0.15);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            flex-shrink: 0;
+        }
+
+        .sumber-title {
+            color: #f8fafc;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .sumber-link {
+            color: #38bdf8;
+            background: rgba(2, 132, 199, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .sumber-link:hover {
+            background: linear-gradient(135deg, #38bdf8, #14b8a6);
+            color: #0f172a;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            color: #7dd3fc;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 550px) {
+            .sumber-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .sumber-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sunbeam"></div>
+
+<div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<div class="container">
+
+    <div class="header-container">
+        <span class="tag-headline">BangTur Aquarium</span>
+        <h1 class="judul-halaman">Sumber Gambar</h1>
+    </div>
+
+    <div class="kotak-sumber">
+
+        <!-- Sumber 1 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">1</span>
+                <span class="sumber-title">Ikan Aligator Gar</span>
+            </div>
+            <a href="https://commons.wikimedia.org/wiki/File:Alligator_gar_(Atractosteus_spatula)_I.jpg" target="_blank" class="sumber-link">Wikimedia Commons 🔗</a>
+        </div>
+
+        <!-- Sumber 2 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">2</span>
+                <span class="sumber-title">Ikan Arwana Super Red</span>
+            </div>
+            <a href="https://www.shutterstock.com/" target="_blank" class="sumber-link">Shutterstock 🔗</a>
+        </div>
+
+        <!-- Sumber 3 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">3</span>
+                <span class="sumber-title">Ikan Piranha Perut Merah</span>
+            </div>
+            <a href="https://www.istockphoto.com/" target="_blank" class="sumber-link">iStock 🔗</a>
+        </div>
+
+        <!-- Sumber 4 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">4</span>
+                <span class="sumber-title">Ikan Kelberi Peacock Bass</span>
+            </div>
+            <a href="https://aquariumstoredepot.com/" target="_blank" class="sumber-link">Aquarium Store Depot 🔗</a>
+        </div>
+
+        <!-- Sumber 5 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">5</span>
+                <span class="sumber-title">Pakan Jangkrik Kering</span>
+            </div>
+            <a href="https://www.shutterstock.com/" target="_blank" class="sumber-link">Shutterstock 🔗</a>
+        </div>
+
+        <!-- Sumber 6 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">6</span>
+                <span class="sumber-title">Ikan Oscar Albino Red Tiger</span>
+            </div>
+            <a href="https://commons.wikimedia.org/" target="_blank" class="sumber-link">Wikimedia Commons 🔗</a>
+        </div>
+
+        <!-- Sumber 7 -->
+        <div class="sumber-item">
+            <div class="sumber-info">
+                <span class="sumber-num">7</span>
+                <span class="sumber-title">Aquarium Tank FS-1-120</span>
+            </div>
+            <a href="https://www.made-in-china.com/" target="_blank" class="sumber-link">Made-in-China 🔗</a>
+        </div>
+
+    </div>
+
+    <div class="footer-copyright">
+        &copy; 2026 <strong>BangTur Aquarium</strong>. Bandung, Jawa Barat.
+    </div>
+
+</div>
+
+</body>
+</html>

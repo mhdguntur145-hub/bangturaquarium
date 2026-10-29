@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang - BangTur Aquarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Tema Biru Kedalaman Air / Ocean Deep */
+            background: linear-gradient(180deg, #0f172a 0%, #0369a1 50%, #0284c7 100%);
+            font-family: 'Poppins', sans-serif;
+            padding: 60px 20px;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* -------------------------------------------------------------
+           Hiasan Visual Aquarium: Sinar Cahaya Air (Sunbeams) & Wave
+           ------------------------------------------------------------- */
+        .sunbeam {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Ambient glowing circles in background */
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(56, 189, 248, 0.15);
+            filter: blur(90px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .glow-orb-1 { top: 10%; left: 15%; }
+        .glow-orb-2 { bottom: 10%; right: 15%; background: rgba(20, 184, 166, 0.2); }
+
+        /* -------------------------------------------------------------
+           Hiasan Animasi Gelembung Udara Melayang (Floating Bubbles)
+           ------------------------------------------------------------- */
+        .bubbles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: rise 12s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 10s; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 25%; width: 18px; height: 18px; animation-duration: 14s; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 40%; width: 40px; height: 40px; animation-duration: 9s;  animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 60%; width: 22px; height: 22px; animation-duration: 11s; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 75%; width: 35px; height: 35px; animation-duration: 13s; animation-delay: 3s; }
+        .bubble:nth-child(6) { left: 90%; width: 15px; height: 15px; animation-duration: 8s;  animation-delay: 5s; }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1) translateX(0);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-50vh) scale(1.1) translateX(15px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) scale(0.9) translateX(-15px);
+                opacity: 0;
+            }
+        }
+
+        /* -------------------------------------------------------------
+           Kotak Utama (Glassmorphism & Ocean Theme)
+           ------------------------------------------------------------- */
+        .kotak {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            width: 100%;
+            max-width: 620px;
+            margin: auto;
+            padding: 42px 36px;
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                        0 0 25px rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .kotak:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 
+                        0 0 35px rgba(56, 189, 248, 0.4);
+            border-color: rgba(56, 189, 248, 0.6);
+        }
+
+        /* Header Tagline & Headline */
+        .tag-headline {
+            display: inline-block;
+            background: linear-gradient(135deg, #38bdf8, #0284c7);
+            color: #0f172a;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+        }
+
+        .judul {
+            color: #ffffff;
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .sub-judul {
+            color: #38bdf8;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 4px;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Deskripsi Atas */
+        .deskripsi-top {
+            color: #e2e8f0;
+            font-size: 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 26px;
+            line-height: 1.7;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* -------------------------------------------------------------
+           3 Poin Fitur Unggulan (3 Kolom Card)
+           ------------------------------------------------------------- */
+        .fitur-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1.5px solid rgba(56, 189, 248, 0.35);
+            border-radius: 18px;
+            padding: 18px 12px;
+            margin-bottom: 26px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .fitur-item {
+            flex: 1;
+            padding: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #bae6fd;
+            line-height: 1.45;
+            transition: transform 0.3s ease;
+        }
+
+        .fitur-item:hover {
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+
+        /* Pembatas garis vertikal halus antar poin */
+        .fitur-item:not(:last-child) {
+            border-right: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .fitur-item span {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+        }
+
+        /* -------------------------------------------------------------
+           Kotak Promo Bergelombang & Berpendar (Glowing Promo)
+           ------------------------------------------------------------- */
+        .promo {
+            color: #ffffff;
+            font-size: 13.5px;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(13, 148, 136, 0.4));
+            padding: 14px 18px;
+            border-radius: 14px;
+            border-left: 5px solid #38bdf8;
+            border-top: 1px solid rgba(56, 189, 248, 0.3);
+            border-right: 1px solid rgba(56, 189, 248, 0.3);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        .promo strong {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 4px 15px rgba(2, 132, 199, 0.25);
+                border-left-color: #38bdf8;
+            }
+            100% {
+                box-shadow: 0 6px 22px rgba(56, 189, 248, 0.5);
+                border-left-color: #2dd4bf;
+            }
+        }
+
+        /* Responsive Mobile Adjustment */
+        @media (max-width: 520px) {
+            .kotak {
+                padding: 30px 20px;
+            }
+            .judul {
+                font-size: 26px;
+            }
+            .sub-judul {
+                font-size: 17px;
+            }
+            .fitur-wrapper {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .fitur-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+                padding-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Ambient Ocean Effects -->
+<div class="sunbeam"></div>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+<!-- Animasi Gelembung Melayang -->
+<div class="bubbles-container">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+</div>
+
+<!-- Main Container -->
+<div class="kotak">
+
+    <span class="tag-headline">Official Store</span>
+
+    <h1 class="judul">Selamat Datang!</h1>
+    <h2 class="sub-judul">DI BANGTUR AQUARIUM</h2>
+
+    <p class="deskripsi-top">
+        Menyediakan Perlengkapan Aquarium, Ikan Hias, dan Bikin Aquascape Paling Lengkap & Murah, Kondisi Sehat dan Segar Pastinyaa.
+    </p>
+
+    <!-- 3 Poin disatukan ke dalam 1 box 3 kolom -->
+    <div class="fitur-wrapper">
+        <div class="fitur-item">
+            <span>🐠</span>
+            Ikan Sehat & Air Jernih
+        </div>
+        <div class="fitur-item">
+            <span>🌿</span>
+            Peralatan & Tanaman Aquascape Lengkap
+        </div>
+        <div class="fitur-item">
+            <span>💰</span>
+            Harga Paling Murah Sebandung... nego ngotak
+        </div>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="promo">
+        🔥 <strong>Promo:</strong> Free pakan ikan setiap pembelian aquarium set!
+    </div>
+
+</div>
+
+</body>
+</html>
